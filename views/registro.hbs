@@ -1,0 +1,44 @@
+<form  action="register" method="POST" id='submit-form' class="my-5" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label class="form-label">Ingrese Nombre de usuario</label>
+    <input type="text" class="form-control" name="username" aria-describedby="emailHelp" required>
+  </div>
+    <div class="mb-3">
+    <label class="form-label">Ingrese su Mail</label>
+    <input type="email" class="form-control" name="mail" aria-describedby="emailHelp" required>
+  </div>
+  
+  <div class="mb-3">
+    <label  class="form-label">Ingrese Nombre y Apellido</label>
+    <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" required>
+  </div>
+    <div class="mb-3">
+    <label for="imagen">Ingresar foto de perfil</label>
+    <input type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control-file" name="foto" required>
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Direccion y Localidad</label>
+    <input type="text" class="form-control" name="direccion" aria-describedby="emailHelp" required>
+  </div>
+    <div class="mb-3">
+    <label  class="form-label">Edad</label>
+    <input type="number" class="form-control" name="edad" aria-describedby="emailHelp" required>
+  </div>
+      <div class="mb-3">
+    <label  class="form-label">Prefijo Telefonico</label>
+    <input type="number" class="form-control" name="pre_tel" aria-describedby="emailHelp" required>
+  </div>
+     <div class="mb-3">
+    <label  class="form-label">Telefono</label>
+    <input type="number" class="form-control" name="tel" aria-describedby="emailHelp" required>
+  </div>
+ 
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" required>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Registrarme</button>
+</form>
+<a href="/facebook" class="btn btn-success my-5">Registro con facebook</a>
+<a href="/login" class="btn btn-success my-5">Login</a>

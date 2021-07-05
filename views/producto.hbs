@@ -1,0 +1,39 @@
+<h1>Producto en Detalle</h1>
+<a href="/carrito" class="btn btn-success">Ir al carrito</a>
+<a href="/" class="btn btn-success">Volver a Home productos</a>
+  <div className="row justify-content-center">
+    <h2>{{producto}}</h2>
+    {{#each producto}}
+<div class="card mb-3 mt-5">
+  <img src="{{url}}" class="card-img-top "  style="width: 25%" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{nombre}}</h5>{{descripcion}}</p>
+    <p class="card-text"><small class="text-muted">El codigo de Producto es : {{_id}}</small></p>
+    <h5>Precio: {{precio}}</h5>
+    <form action="/carrito" method="POST" class="my-5">
+<input type="hidden" class="form-control" name="nombre" value={{nombre}} aria-describedby="emailHelp"  readonly>
+<input type="hidden" class="form-control" name="descripcion" value={{descripcion}} aria-describedby="emailHelp"  readonly>
+ <input type="hidden" class="form-control" name="codigo" value={{_id}} aria-describedby="emailHelp"  readonly>
+<input type="hidden" class="form-control" name="precio" value={{precio}} aria-describedby="emailHelp"  readonly>
+<input type="hidden" class="form-control" name="url" value={{url}} aria-describedby="emailHelp"  readonly>
+<input type="number" class="form-control" style="width: 25%" name="cant_compra" min="1" value="1" max={{stock}} aria-describedby="emailHelp" required>
+<button type="submit" class="btn btn-primary my-5">Agregar al Carrito</button>
+      </form>
+  <h2>Consultas sobre el producto</h2>
+  <form action="/mensajes" method="POST" class="my-5">
+  <input type="text" class="form-control mb-4" name="mail"  aria-describedby="emailHelp" placeholder="Ingrese su mail"> 
+  <textarea type="text" class="form-control" name="mensaje"  aria-describedby="emailHelp" placeholder="Ingrese mensaje"></textarea>
+  <input type="hidden" class="form-control" name="articulo" value={{_id}} aria-describedby="emailHelp">
+ 
+<button type="submit" class="btn btn-primary my-5">Enviar Mensaje</button>
+      </form>
+  </div>
+</div>
+
+    {{/each}}
+ <ul class="list-group">
+ {{#each mensaje}}
+  <li class="list-group-item"><b>{{mail}}</b>:{{mensaje}}</li>
+ {{/each}}
+ </ul>
+  </div>

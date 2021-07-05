@@ -1,0 +1,17 @@
+<h1>Producto en Detalle</h1>
+<a href="/carrito" class="btn btn-success">Ir al carrito</a>
+<a href="/" class="btn btn-success">Volver a Home productos</a>
+  <div className="row justify-content-center">
+    {{#each prodcard}}
+<div class="card mb-3 mt-5">
+  <img src="{{url}}" class="card-img-top "  style="width: 25%" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{nombre}}</h5>{{descripcion}}</p>
+    <p class="card-text"><small class="text-muted">El codigo de Producto es : {{codigo}}</small></p>
+    <h5>Precio: {{precio}}</h5>
+  </div>
+</div>
+
+    {{/each}}
+
+  </div>

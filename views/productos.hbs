@@ -1,0 +1,46 @@
+
+
+<h1>Productos</h1>
+<a href="/carrito" class="btn btn-success">Ir al carrito</a>
+<a href="/agregar" class="btn btn-success">Editar lista de productos</a>
+<a href="/pedidos" class="btn btn-success">Mis compras</a>
+<a href="/pendientes" class="btn btn-success">Pendientes</a>
+<a href="/logout" class="btn btn-success">Salir</a>
+<a href="/datos" class="btn btn-success">Datos Personales</a>
+<img src="./img/fotos/{{foto_usuario}}" class="img-fluid" style="width: 15%;" alt="Responsive image">
+  <div className="row justify-content-center">
+   
+<table class="table my-5">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th>Fotos</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Cantidad que quiero comprar</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    {{#each productos}}
+    <tr>
+      <form action="carrito" method="POST">
+      <th scope="row"><input type="text" class="form-control" name="nombre" value={{nombre}} aria-describedby="emailHelp"  readonly></th>
+      <td><img src="./img/productos/{{url}}" class="img-fluid" alt="Responsive image"></td>
+      <input type="hidden" class="form-control" name="url" value={{url}} aria-describedby="emailHelp"  readonly>
+      <input type="hidden" class="form-control" name="descripcion" value={{descripcion}} aria-describedby="emailHelp"  >
+      <input type="hidden" class="form-control" name="codigo" value={{_id}} aria-describedby="emailHelp" >
+      <td><input type="number" class="form-control" name="precio" value={{precio}} aria-describedby="emailHelp"  readonly></td>
+      <td><input type="number" class="form-control" name="cant_compra" min="1" value="1" max={{stock}} aria-describedby="emailHelp" required></td>
+      <td><button type="submit" class="btn btn-primary">Agregar al Carrito</button></td>
+      <td><a href='/producto/{{_id}}' class="btn btn-success">Ver el producto en detalle</a></td>
+      </form>
+
+    </tr>
+
+    {{/each}}
+</tbody>
+</table> 
+  </div>
+

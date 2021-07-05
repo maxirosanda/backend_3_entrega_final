@@ -1,0 +1,34 @@
+
+
+<h1>Carrito</h1>
+<a href="/" class="btn btn-success">Volver a Home productos</a>
+<a href="/comprar" class="btn btn-success">Comprar carrito</a>
+  <div className="row justify-content-center">
+<table class="table my-5">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th>Fotos</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Cantidad</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    {{#each carrito}}
+    <tr>
+
+      <th scope="row">{{nombre}}</th>
+      <td><img src="./img/productos/{{url}}" class="img-fluid" alt="Responsive image"></td>
+      <td>{{precio}}</td>
+      <td>{{cant_compra}}</td>
+      <form action="carrito/{{_id}}?_method=DELETE" method="POST">
+     <input type="hidden" name="_method" value="DELETE">
+      <td><button type="submit" class="btn btn-primary">Retirar del carrito</button></td>
+    </form>
+    </tr>
+    {{/each}}
+</tbody>
+</table> 
+  </div>

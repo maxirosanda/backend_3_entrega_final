@@ -1,0 +1,70 @@
+
+<h1>Productos</h1>
+<a href="/" class="btn btn-success">Volver a Home productos</a>
+<a href="/logout" class="btn btn-success">Salir</a>
+  <div className="row justify-content-center">
+    <h2>Agregar Producto</h2>
+<form  action="productos" method="POST" id='submit-form' class="my-5" enctype="multipart/form-data">
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+    <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" required>
+  </div>
+   <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Descripcion</label>
+    <input type="text" class="form-control" name="descripcion" aria-describedby="emailHelp"required>
+  </div>
+     <div class="mb-3">
+    <label for="imagen">Ingresar Imagen del Producto</label>
+    <input type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control-file" name="url" required>
+  </div>
+   <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Precio</label>
+    <input type="number" class="form-control" name="precio" aria-describedby="emailHelp" required>
+  </div>
+   <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Stock</label>
+    <input type="number" class="form-control" name="stock" aria-describedby="emailHelp" required>
+  </div>
+   
+  <button type="submit" class="btn btn-primary" >Agregar</button>
+</form>
+<h2>Actualizar y Borrar</h2>
+<table class="table my-5">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Codigo</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Stock</th>
+      <th scope="col">url</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    {{#each productos}}
+    <tr>
+      <form action="productos/{{_id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+      <th scope="row"><input type="text" class="form-control" name="nombre" value={{nombre}} aria-describedby="emailHelp" required></th>
+      <td><input type="text" class="form-control" name="descripcion" value={{descripcion}} aria-describedby="emailHelp" required></td>
+      <td><input type="text" class="form-control" name="codigo" value={{_id}} aria-describedby="emailHelp" readonly></td>
+      <td><input type="number" class="form-control" name="precio" value={{precio}} aria-describedby="emailHelp" required></td>
+      <td><input type="number" class="form-control" name="stock" value={{stock}} aria-describedby="emailHelp" required></td>
+      <td><input type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control-file" name="url"></td>
+      <input type="hidden"  class="form-control" name="urldos" value={{url}}>
+      <input type="hidden" name="_method" value="PUT">
+      <td><button type="submit" class="btn btn-primary">Actualizar</button></td>
+      </form>
+      <form action="productos/{{_id}}?_method=DELETE" method="POST">
+      <input type="hidden"  class="form-control" name="url" value={{url}}>
+     <input type="hidden" name="_method" value="DELETE">
+      <td><button type="submit" class="btn btn-primary">Borrar</button></td>
+    </form>
+    </tr>
+
+    {{/each}}
+</tbody>
+</table> 

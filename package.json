@@ -1,0 +1,44 @@
+{
+  "name": "mvc_maxi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "forever start -w server.js",
+    "fork": "pm2 start server.js --name='Server1' --watch -- 8081",
+    "cluster": "pm2 start server.js --name='Server2' --watch -i max -- 8082"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "connect-mongo": "^4.4.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "espress": "0.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-handlebars": "^5.3.2",
+    "express-session": "^1.17.1",
+    "faker": "^5.5.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^4.7.0",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0",
+    "twilio": "^3.64.0"
+  },
+  "devDependencies": {
+    "handlebars": "^4.5.0"
+  }
+}
