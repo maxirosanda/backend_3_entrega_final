@@ -4,11 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "forever start -w server.js",
-    "fork": "pm2 start server.js --name='Server1' --watch -- 8081",
-    "cluster": "pm2 start server.js --name='Server2' --watch -i max -- 8082"
+    "start": "nodemon server.js CLUSTER",
+    "sincluster":"nodemon server.js",
+    "artillery":"artillery quick --count 500 -n 10 http://localhost:8080/ > resultados_artillery.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +35,7 @@
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-local": "^1.0.0",
+    "pino": "^6.11.3",
     "twilio": "^3.64.0"
   },
   "devDependencies": {

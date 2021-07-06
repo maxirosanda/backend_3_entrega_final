@@ -1,0 +1,14 @@
+Started phase 0, duration: 10s @ 02:45:38(-0300) 2021-07-06
+Report @ 02:45:48(-0300) 2021-07-06
+Elapsed time: 11 seconds
+  Scenarios launched:  473
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 47.53
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+

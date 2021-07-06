@@ -1,5 +1,6 @@
 
 const User = require('../models/usuarios');
+const loggerError = require('pino')('./logs/error.log')
 module.exports = {
 
     vistalogin: (req,res)=>{
@@ -17,8 +18,6 @@ module.exports = {
         const {username,nombre,mail,direccion,edad,pre_tel,tel,_id,fotodos}=req.body
         let EDFile
         if(req.files) EDFile = req.files.foto
-        console.log(req.files)
-        console.log(fotodos)
         if(EDFile) {
         EDFile.mv(`./public/img/fotos/${fotodos}`,err => {
           if(err) return res.status(500).send({ message : err })})
@@ -41,7 +40,7 @@ module.exports = {
           )
           await res.redirect("/datos")   
         }
-        catch (e) { console.log(e) }
+        catch (e) { loggerError.error(e) }
       
         },
 
@@ -68,7 +67,7 @@ module.exports = {
             res.redirect("/login");
             })
          }
-         catch (e) { console.log(e) } 
+         catch (e) { loggerError.error(e) } 
          
       
     }

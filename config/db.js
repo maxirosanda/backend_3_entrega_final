@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 require('dotenv').config({path:'variables.env'})
+const loggerInfo = require('pino')()
+const loggerError = require('pino')('./logs/error.log')
 
-const conectarDB = async (elegirbase) => {
+const conectarDB = async () => {
     try{
       
         let URL ='mongodb+srv://maxirosanda:dalma123@cluster0.cawk2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
@@ -12,11 +14,11 @@ const conectarDB = async (elegirbase) => {
             useFindAndModify: false,
             useCreateIndex:true
         })
-        console.log('base de datos conectada')
+        loggerInfo.info('base de datos conectada')
         
     }
     catch(e) {
-            console.log(`error ${e}`)
+            loggerError.error(`error ${e}`)
             process.exit(1)
     }
 }

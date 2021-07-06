@@ -3,22 +3,25 @@ const Pedido =require('../models/pedidos');
 const enviarmail = require('../utils/mail')
 const enviarwhatsapp = require('../utils/whatsapp')
 const enviarsms = require('../utils/sms')
+const loggerError = require('pino')('./logs/error.log')
+const loggerWarn = require('pino')('./logs/warn.log')
 exports.getPedidos = async (req, res, next) => {
   try{
+    
     pedidos = await Pedido.find({id_comprador: req.user._id}).lean() 
     await res.render("mispedidos", {pedidos:pedidos}) 
   }
-  catch (e) { console.log(e) } 
+  catch (e) { loggerError.error(e) } 
   }
 
   exports.getPendientes = async (req, res, next) => {
     try{
       
       pendientes = await Pedido.find({}).lean()
-      console.log(pendientes)
+      loggerWarn.warn(pendientes)
       await res.render("pendientes", {pendientes:pendientes}) 
     }
-    catch (e) { console.log(e) } 
+    catch (e) {  loggerError.error(e) } 
     }
 
 exports.createPedido = async (req, res, next) => {  
@@ -53,6 +56,6 @@ exports.createPedido = async (req, res, next) => {
     }
     
   }
-catch (e) { console.log(e) }
+catch (e) {  loggerError.error(e) }
 }
 

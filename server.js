@@ -14,7 +14,9 @@ const methodOverride=require('method-override')
 const handlebars = require("express-handlebars");
 const cluster = require("cluster");
 const fileUpload = require('express-fileupload')
-
+const loggerInfo = require('pino')()
+const loggerWarn = require('pino')('./logs/warn.log')
+const loggerError = require('pino')('./logs/error.log')
 const ecommerceRoutes = require('./routes/ecommerceRoutes'); 
 const conectarDB = require('./config/db')
 require("./passport/passport");
@@ -68,9 +70,9 @@ conectarDB()
 
 
 const numCpu = require("os").cpus().length;
-if(cluster.isMaster && process.argv[3]=="CLUSTER") {
-    console.log(numCpu);
-    console.log(`process ID: ${process.pid} `);
+if(cluster.isMaster && process.argv[2]=="CLUSTER") {
+    loggerInfo.info(numCpu);
+    loggerInfo.info(`process ID: ${process.pid} `);
 
 
     for (let i = 0; i < numCpu; i++) {
@@ -78,12 +80,14 @@ if(cluster.isMaster && process.argv[3]=="CLUSTER") {
     }
 
     cluster.on('exit', worker => {
-        console.log(`Worker, ${worker.process.pid} died ${new Date()}`);
+        loggerInfo.info(`Worker, ${worker.process.pid} died ${new Date()}`);
         cluster.fork();
     });
 } else {
     const port = process.env.PORT || '8080';
     app.set('port', port);
-    server.listen(port);
-    console.log('Server listening on port ' + port +' pid:' + process.pid);
+    server.listen(port).on('error',error=>{
+        loggerError.error(`error en el servidor:${error}`)
+    })
+    loggerInfo.info('Server listening on port ' + port +' pid:' + process.pid);
 }

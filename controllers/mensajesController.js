@@ -1,6 +1,6 @@
 const Mensaje = require('../models/mensajes');
 const enviarsms = require('../utils/sms')
-
+const loggerError = require('pino')('./logs/error.log')
   exports.createMensajes = async (req, res, next) => {  
       try{
         mensaje = new Mensaje(req.body)
@@ -11,5 +11,5 @@ const enviarsms = require('../utils/sms')
         await mensaje.save()
         await res.redirect("/producto/" + mensaje.articulo ) 
       }
-    catch (e) { console.log(e) }
+    catch (e) { loggerError.error(e) }
   }

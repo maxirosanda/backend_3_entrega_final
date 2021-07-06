@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 const fs = require('fs')
 const path =require('path')
+const loggerError = require('pino')('./logs/error.log')
 
 function makeid(length) {
   var result           = '';
@@ -21,7 +22,7 @@ exports.agregar = async (req, res, next) => {
   producto = await Producto.find({}).lean()
   await res.render("agregarProducto", {productos: producto})
 }
-catch (e) { console.log(e) } 
+catch (e) { loggerError.error(e) } 
 }
 
  exports.getProductos = async (req, res, next) => {
@@ -31,7 +32,7 @@ catch (e) { console.log(e) }
      comprador = JSON.parse(comprador)
      await res.render("productos", {productos:producto,comprador:comprador,foto_usuario:req.user.foto}) 
   }
-  catch (e) { console.log(e) } 
+  catch (e) { loggerError.error(e) } 
   }
 
 
@@ -43,7 +44,7 @@ catch (e) { console.log(e) }
        mensaje = await Mensaje.find({articulo: id}).lean()
        await res.render(`producto`, {producto: producto,mensaje:mensaje}) 
     }
-    catch (e) { console.log(e) } 
+    catch (e) { loggerError.error(e) } 
     }
 
   exports.createProductos = async (req, res, next) => {  
@@ -87,7 +88,7 @@ exports.updateProducto = async (req, res, next) => {
     )
     await res.redirect("/agregar")   
   }
-  catch (e) { console.log(e) }
+  catch (e) { loggerError.error(e) }
 
   },
 
@@ -98,6 +99,6 @@ exports.updateProducto = async (req, res, next) => {
       producto = await  Producto.deleteOne({_id: id})
       await res.redirect("/agregar") 
     }
-     catch (e) { console.log(e) } 
+     catch (e) { loggerError.error(e) } 
 
 }

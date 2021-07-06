@@ -1,18 +1,18 @@
 const Carrito = require('../models/carrito');
-
+const loggerError = require('pino')('./logs/error.log')
 exports.getCarritos = async (req, res, next) => {
   try{
      carrito = await Carrito.find({id_comprador: req.user._id}).lean() 
      await res.render("carrito", {carrito: carrito}) 
   }
-  catch (e) { console.log(e) } 
+  catch (e) { loggerError.error(e) } 
   }
 
 
 
   exports.createCarrito = async (req, res, next) => {  
     try{
-      console.log(req.user)
+
       let encontrado = await Carrito.find({codigo:req.body.codigo}).lean() 
       if(!(Object.entries(encontrado).length === 0))
         {
@@ -42,7 +42,7 @@ exports.getCarritos = async (req, res, next) => {
       }
 
     }
-  catch (e) { console.log(e) }
+  catch (e) {  loggerError.error(e) }
 }
 
 
@@ -67,7 +67,7 @@ exports.updateCarrito = async (req, res, next) => {
       )
       await res.status(200).json(carrito)  
     }
-    catch (e) { console.log(e) }
+    catch (e) {  loggerError.error(e) }
   
     },
 
@@ -77,6 +77,6 @@ exports.updateCarrito = async (req, res, next) => {
       carrito = await  Carrito.deleteOne({_id: id})
       await res.redirect("/carrito")  
     }
-     catch (e) { console.log(e) } 
+     catch (e) {  loggerError.error(e) } 
 
 }
